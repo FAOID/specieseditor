@@ -1,0 +1,27 @@
+<zk>
+	<window border="normal" width="400px" style="padding-top:20px;padding-left:20px;" title="Species Editor" apply="org.openforis.specieseditor.RegistrationComposer">
+    <grid hflex="1">
+        <auxhead>
+            <auxheader colspan="2" label="Add New Species" style="font-size:16px" image="images/species.png"/>
+        </auxhead>
+        <columns/>
+        <rows>
+            <row>
+                Species name <textbox id="speciesName" hflex="1" constraint="no empty"/>
+            </row>
+            <row>
+                Vernacular name <textbox id="vernacularName" hflex="1" constraint="no empty"/>
+            </row>
+            <row>
+                Quallifier1 <textbox id="qualifier1" hflex="1" constraint="no empty"/>
+            </row>
+            <row spans="2" align="right">
+                <hlayout>
+                    <button id="resetButton" label="Reset" />
+                    <button id="submitButton" label="Submit" disabled="true"/>
+                </hlayout>
+            </row>
+        </rows>
+    </grid>
+</window>
+</zk>
