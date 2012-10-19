@@ -7,12 +7,21 @@
 	<description><![CDATA[My ZK Application]]></description>
 	<display-name>specieseditor</display-name>
 
+<!--  collect spring dao -->
+	<context-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>/WEB-INF/spring-config.xml</param-value>
+	</context-param>
+	<listener> 
+<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+</listener>
 	<!-- //// -->
 	<!-- ZK -->
 	<listener>
 		<description>ZK listener for session cleanup</description>
 		<listener-class>org.zkoss.zk.ui.http.HttpSessionListener</listener-class>
 	</listener>
+	
 	<servlet>
 		<description>ZK loader for ZUML pages</description>
 		<servlet-name>zkLoader</servlet-name>
