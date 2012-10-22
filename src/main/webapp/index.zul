@@ -1,3 +1,4 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <zk>
 	<window border="normal" width="400px" style="padding-top:20px;padding-left:20px;" title="Species Editor" apply="org.openforis.specieseditor.NewSpecies">
     <grid hflex="1">
@@ -16,7 +17,7 @@
                 Vernacular name <textbox id="vernacularName" hflex="1" constraint="no empty"/>
             </row>
             <row>
-                Quallifier1 <textbox id="qualifier1" hflex="1" />
+                Quallifier1 <textbox id="qualifier1Name" hflex="1" />
             </row>
             <row spans="2" align="right">
                 <hlayout>
