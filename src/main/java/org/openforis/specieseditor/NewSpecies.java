@@ -46,8 +46,8 @@ public class NewSpecies extends SelectorComposer<Window>  {
 	@WireVariable
 	private SpeciesManager speciesManager;
 	
-	@Listen("onClick=#okButton")
-    public void onOkButton(){
+	@Listen("onClick=#searchButton")
+    public void onSearchButton(){
     	String taxonomy = taxonomyName.getText();
     	String species = speciesName.getText();
     	String vernacular = vernacularName.getText();

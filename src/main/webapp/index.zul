@@ -1,7 +1,7 @@
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 
 <zk>
-	<window border="normal" width="400px" style="padding-top:20px;padding-left:20px;" title="Species Editor" apply="org.openforis.specieseditor.NewSpecies">
+	<window border="normal" width="800px" position="center" mode="modal"  title="Species Editor" apply="org.openforis.specieseditor.NewSpecies" >
     <grid hflex="1">
         <auxhead>
             <auxheader colspan="2" label="Add New Species" style="font-size:16px" image="images/species.png"/>
@@ -22,10 +22,41 @@
             </row>
             <row spans="2" align="right">
                 <hlayout>
-                    <button id="okButton" label="OK" forward="onClick=onOkButton"/>
+                    <button id="searchButton" label="Search" forward="onClick=onSearchButton"/>
                 </hlayout>
             </row>
         </rows>
     </grid>
+    
+        <listbox id="box">
+        <listhead sizable="true">
+            <listheader label="name" sort="auto" />
+            <listheader label="gender" sort="auto" />
+        </listhead>
+        <listitem>
+            <listcell label="Mary" />
+            <listcell label="FEMALE" />
+        </listitem>
+        <listitem>
+            <listcell label="John" />
+            <listcell label="MALE" />
+        </listitem>
+        <listitem>
+            <listcell label="Jane" />
+            <listcell label="FEMALE" />
+        </listitem>
+        <listitem>
+            <listcell label="Henry" />
+            <listcell label="MALE" />
+        </listitem>
+        <listfoot>
+            <listfooter>
+                <label value="This is footer1" />
+            </listfooter>
+            <listfooter>
+                <label value="This is footer2" />
+            </listfooter>
+        </listfoot>
+    </listbox>
 </window>
 </zk>
