@@ -1,31 +1,42 @@
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 
 <zk>
-	<window border="normal" width="400px" style="padding-top:20px;padding-left:20px;" title="Species Editor" apply="org.openforis.specieseditor.NewSpecies">
-    <grid hflex="1">
+	<window border="normal" width="90%" style="padding-top:20px;padding-left:20px;" title="Species Editor" apply="org.openforis.specieseditor.GridSpeciesController">
+	    
+	    <grid hflex="1">
         <auxhead>
-            <auxheader colspan="2" label="Add New Species" style="font-size:16px" image="images/species.png"/>
+            <auxheader colspan="2" label="Species Editor" style="font-size:16px" image="images/species.png"/>
         </auxhead>
         <columns/>
         <rows>
         	<row>
-                Taxonomy name <textbox id="taxonomyName" hflex="1" constraint="no empty" value="mofor_species"/>
+                Taxonomy name <textbox id="taxonomyName" hflex="1"  value="mofor_species"/>
             </row>
             <row>
-                Species name <textbox id="speciesName" hflex="1" constraint="no empty"/>
+                Vernacular name <textbox id="vernacularName" hflex="1"/>
             </row>
             <row>
-                Vernacular name <textbox id="vernacularName" hflex="1" constraint="no empty"/>
+                Species name <textbox id="speciesName" hflex="1" />
             </row>
             <row>
-                Quallifier1 <textbox id="qualifier1Name" hflex="1" />
-            </row>
-            <row spans="2" align="right">
-                <hlayout>
-                    <button id="okButton" label="OK" forward="onClick=onOkButton"/>
-                </hlayout>
-            </row>
+			    Province 
+				<listbox id="provinceListbox" mold="select" >
+				</listbox>
+			</row>
+			<row>
+                <button id="okButton" label="Search" forward="onClick=onOkButton"/>
+                <button id="addButton" label="Add" forward="onClick=onAddButton"/>
+        	</row>
         </rows>
     </grid>
+	   
+	<grid id="speciesGrid">
+		<columns sizable="true">
+		<column label="Vernacular name" width="30%"/>
+		<column label="Scientific name" width="40%"/>
+		<column label="Action" width="10%"/> </columns>
+	</grid>
+    
+    
 </window>
 </zk>
