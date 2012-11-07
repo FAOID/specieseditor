@@ -1,5 +1,6 @@
 package org.openforis.specieseditor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -8,6 +9,7 @@ import org.openforis.collect.manager.SpeciesManager;
 import org.openforis.collect.model.CollectSurvey;
 import org.openforis.collect.persistence.SurveyDao;
 import org.openforis.collect.persistence.TaxonDao;
+import org.openforis.collect.persistence.TaxonVernacularNameDao;
 import org.openforis.collect.persistence.TaxonomyDao;
 import org.openforis.idm.metamodel.CodeList;
 import org.openforis.idm.metamodel.CodeListItem;
@@ -68,7 +70,15 @@ public class GridSpeciesController extends SelectorComposer<Window>  {
 	
 	@Wire
 	private Listbox provinceListbox;
+
+	@WireVariable
+	private TaxonVernacularNameDao taxonVernacularNameDao;
+
+	@Wire
+	private Button btnAdd;
 	
+	@Wire
+	private Label lblSpeciesStatus;
 	@Override
 	public void doAfterCompose(Window comp) throws Exception {
 		super.doAfterCompose(comp);
@@ -105,8 +115,8 @@ public class GridSpeciesController extends SelectorComposer<Window>  {
 	}
 	
 	
-	@Listen("onClick=#okButton")
-    public void onOkButton(){
+	@Listen("onClick=#searchButton")
+    public void onSearchButton(){
     	String taxonomy = taxonomyName.getText();
     	String species = speciesName.getText();
     	String vernacular = vernacularName.getText();
@@ -116,4 +126,37 @@ public class GridSpeciesController extends SelectorComposer<Window>  {
     	List<TaxonOccurrence> speciesList = speciesManager.findByScientificName(taxonomy, species, 1);
     	Messagebox.show(speciesList.size()+"");
     }
+	
+	@Listen("onClick=#btnAdd")
+	public void onBtnAdd(){
+		//species first, find it first
+		int taxonId = 0;
+		List<TaxonOccurrence> speciesList = speciesManager.findByScientificNameByTaxonRank(taxonomyName.getText(), speciesName.getText(), 1, "species");
+		if(speciesList.size()==0){
+			//deal with inserting species later on
+			lblSpeciesStatus.setValue("Non existing species, please insert new one");
+			btnAdd.setLabel("Search>>");
+		}else{
+			//for now deal with existing species first 
+			taxonId = speciesList.get(0).getSystemId();
+			
+			//display species detail : genus, family, species
+			lblSpeciesStatus.setValue("Existing species, you may edit these values");
+			btnAdd.setLabel("Insert>>");
+			/*
+			//vernacularname
+			TaxonVernacularName entity = new TaxonVernacularName();
+			entity.setVernacularName(vernacularName.getText());
+			entity.setLanguageCode("id");
+			List<String> qualifiers = new ArrayList<String>();
+			qualifiers.add(provinceListbox.getSelectedItem().getValue().toString());
+			entity.setQualifiers(qualifiers);
+			entity.setStep(9);
+			entity.setTaxonSystemId(taxonId);
+			taxonVernacularNameDao.insert(entity);
+			 */
+		}
+		
+		
+	}
 }

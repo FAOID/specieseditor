@@ -24,8 +24,21 @@
 				</listbox>
 			</row>
 			<row>
-                <button id="okButton" label="Search" forward="onClick=onOkButton"/>
-                <button id="addButton" label="Add" forward="onClick=onAddButton"/>
+			<label id="lblSpeciesStatus">
+			Existing Species
+			</label>
+			</row>
+			<row>
+				Family <textbox id="existingFamily"/>
+			</row>
+			<row>
+				Genus <textbox id="existingGenus"/>
+			</row>
+			<row>
+				Species <textbox id="existingSpecies"/>
+			</row>
+			<row spans="2" align="left">
+                 <button id="btnAdd" label="Search>>" forward="onClick=onBtnAdd"/>
         	</row>
         </rows>
     </grid>
